@@ -1,0 +1,21 @@
+<h1><%= t ".title" %></h1>
+
+<%= link_to "New Product", new_product_path if authenticated? %>
+
+<div class="products">
+  <% @products.each do |product| %>
+    <div>
+      <%= link_to product.name, product %>
+      <p><%= product.description %></p>
+      <p>
+      <small><%= distance_of_time_in_words(product.created_at, Time.now) %></small>
+      </p>
+
+      <div>
+        <%= image_tag product.featured_image, size: "150" if product.featured_image.attached? %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- <%= debug @products %> -->
