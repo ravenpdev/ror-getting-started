@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # @product = Product.find(params[:id])
   end
 
   def new
@@ -17,8 +16,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    logger.debug "Product Params: #{product_params}"
-    logger.debug "Product: #{@product.attributes.inspect}"
     if @product.save
       redirect_to @product
     else
@@ -27,11 +24,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # @product = Product.find(params[:id])
   end
 
   def update
-    # @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to @product
     else
@@ -48,6 +43,7 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+    @reviews = @product.reviews.includes(:user).order(created_at: :desc)
   end
 
   def product_params

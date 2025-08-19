@@ -24,13 +24,20 @@
 
   <body>
     <div class="notice"><%= notice %></div>
-    <nav>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Products", products_path %>
-      <%= link_to "Login", new_session_path unless authenticated? %>
+    <nav class="max-w-5xl mx-auto flex gap-2 justify-between items-center">
+      <ul>
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "Login", new_session_path unless authenticated? %>
+        </li>
+      </ul>
       <%= button_to "Log out", session_path, method: :delete if authenticated? %>
     </nav>
 
-    <%= yield %>
+    <main class="w-5xl mx-auto mt-8">
+      <%= yield %>
+    </main>
   </body>
 </html>

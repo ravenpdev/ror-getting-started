@@ -1,0 +1,10 @@
+<section>
+  <h2 class="text-lg font-bold">Reviews</h2>
+  <% reviews.each do |review| %>
+    <small>Review from: <%= review.user.email_address %></small>
+    <div>
+      <p>Rating: <%= review.rating %></p>
+      <%= review.message %>      
+    </div>
+  <% end %>
+</section>

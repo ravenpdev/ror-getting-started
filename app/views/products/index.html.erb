@@ -1,21 +1,23 @@
-<h1><%= t ".title" %></h1>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-bold"><%= t ".title" %></h1>
 
-<%= link_to "New Product", new_product_path if authenticated? %>
+  <%= link_to "New Product", new_product_path, class: "bg-blue-500 text-blue-50 py-1.5 px-2.5 rounded" %>
+</div>
 
-<div class="products">
-  <% @products.each do |product| %>
-    <div>
-      <%= link_to product.name, product %>
-      <p><%= product.description %></p>
-      <p>
-      <small><%= distance_of_time_in_words(product.created_at, Time.now) %></small>
-      </p>
+<div class="mt-8">
 
+  <div class="grid grid-cols-4 gap-4">
+    <% @products.each do |product| %>
       <div>
-        <%= image_tag product.featured_image, size: "150" if product.featured_image.attached? %>
+        <%= image_tag product.featured_image, class: "h-48 w-full object-cover" if product.featured_image.attached? %>
+
+        <%= link_to product.name, product, class: "text-blue-500 underline" %>
+        <%= product.description %>
+        <small><%= distance_of_time_in_words(product.created_at, Time.now) %></small>
+
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <!-- <%= debug @products %> -->

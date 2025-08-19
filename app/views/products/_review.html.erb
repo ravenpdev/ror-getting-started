@@ -1,0 +1,14 @@
+<p>Add Review</p>
+
+<%= form_with model: [product, Review.new] do |form| %>
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.number_field :rating %>
+  </div>
+  <div>
+    <%= form.label :message, style: "display: block" %>
+    <%= form.text_area :message, placeholder: "Optional message" %> 
+  </div>
+  <%= form.submit "Submit", class: "bg-blue-500 text-blue-50 py-1.5 px-2.5 rounded text-sm" %>
+<% end %>
+
